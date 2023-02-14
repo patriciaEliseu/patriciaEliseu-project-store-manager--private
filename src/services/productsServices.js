@@ -14,10 +14,11 @@ const getAll = async () => {
 // requisito 01 listar produto pelo id;
 const getById = async (id) => {
   const product = await productsModels.getById(id);
+  // console.log('judas4', product);
   if (!product) {
     return { status: 404, message: 'Product not found' };
   }
-  return { status: 200, message: product };
+  return { status: 200, message: { ...product } };
 };
 
 module.exports = {
