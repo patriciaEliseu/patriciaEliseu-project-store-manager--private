@@ -59,3 +59,34 @@ console.log('judas2', productsMock[0] );
     });
   });
 });
+
+// requisito 07 de testes
+describe('Controller Products', function () {
+  describe('created Product ', function () {
+    const req = {};
+    const res = {};
+
+    beforeEach(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+    });
+
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Should return the new created product', async function () {
+      req.body = {
+        name: 'ProdutoXX',
+      }
+
+      const newProduct = { id: 4, ...req.body }
+
+      sinon.stub(productsServices, 'create').resolves(newProduct);
+      await productsControllers.create(req, res);
+
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWithExactly(newProduct);
+    });
+  });
+});

@@ -41,3 +41,20 @@ describe('Products Models', function () {
     });
   });
 });
+// requisito de teste 07
+describe('Product Model', function () {
+  describe('create new product', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+    it('Should return create new product', async function () {
+      const newProduct = 'ProdutoX'
+
+      sinon.stub(connection, 'execute').resolves([{ insertId: 4 }]);
+
+      const result = await productsModels.create(newProduct);
+
+      expect(result).to.be.deep.equal({ id: 4, name: 'ProdutoX' });
+    });
+  });
+});

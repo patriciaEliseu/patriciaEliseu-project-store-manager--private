@@ -23,7 +23,7 @@ const getById = async (id) => {
 // requisito 03 cadastrar produto;
 const create = async (name) => {
   const { error } = await schemaProduct.validate({ name });
-  console.log('errorService', error);
+  // console.log('errorService', error);
   if (error) {
     return {
       type: error.details[0].type,

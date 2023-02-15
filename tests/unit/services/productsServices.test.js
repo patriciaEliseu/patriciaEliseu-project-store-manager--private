@@ -51,3 +51,28 @@ describe('Products Services', function () {
     });
   });
 });
+
+// requisito 07 de testes
+describe('Product Servic', function () {
+  describe('Create product', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Should return product create', async function () {
+      const newProduct = {
+
+        name: 'ProdutoXX',
+      }
+
+      const newId = 4;
+
+
+      sinon.stub(productsModels, 'create').resolves({ newId, newProduct });
+
+      const result = await productsServices.create(newProduct);
+// console.log('resultServices', result);
+      expect(result).to.be.deep.equal({ type: 'string.base', message: '"name" must be a string' });
+    });
+  });
+});
