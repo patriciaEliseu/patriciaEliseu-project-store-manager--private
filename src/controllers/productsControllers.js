@@ -11,11 +11,19 @@ const getById = async (req, res) => {
   const { id } = req.params;
   const product = await productsServices.getById(id);
   if (product.status === 404) return res.status(404).json({ message: product.message });
-console.log('judas3', product);
+// console.log('judas3', product);
   return res.status(200).json(product.message);
+};
+
+// requisito 03 cadastrar produto;
+const create = async (req, res) => {
+  const { name } = req.body;
+  const createProduct = await productsServices.create(name);
+  return res.status(201).json(createProduct);
 };
 
 module.exports = {
   getAll,
   getById,
+  create,
 };

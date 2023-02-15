@@ -14,7 +14,17 @@ const getById = async (id) => {
   return productId;
 };
 
+// requisito 03 cadastrar produtos
+const create = async (name) => {
+  const query = 'INSERT INTO StoreManager.products(name) VALUES(?)';
+  const [{ insertId }] = await connection.execute(query, [name]);
+  const object = { id: insertId, name };
+  console.log('createModel', object);
+  return object;
+};
+
 module.exports = {
     getAll,
-  getById,
+    getById,
+    create,
 };

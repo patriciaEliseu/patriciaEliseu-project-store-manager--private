@@ -16,6 +16,9 @@ app.get('/products', productsControllers.getAll);
 // requisito 01 endpoint /products/:id;
 app.get('/products/:id', productsControllers.getById);
 
+// requisito 03 endpoint cadastrar /products;
+app.post('/products', productsControllers.create);
+
 // app.use((error, _req, res, _next) => {
 //   if (error.status) {
 //     return res.status(error.status).json({ message: error.message });
