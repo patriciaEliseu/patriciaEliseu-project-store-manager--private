@@ -1,5 +1,5 @@
 const express = require('express');
-const { productsControllers } = require('./controllers');
+const { productsControllers, salesControllers } = require('./controllers');
 
 const app = express();
 
@@ -19,13 +19,15 @@ app.get('/products/:id', productsControllers.getById);
 // requisito 03 endpoint cadastrar /products;
 app.post('/products', productsControllers.create);
 
+// requisito 06 endpoint cadastrar /sales;
+app.post('/sales', salesControllers.createSalles);
+
 // requisito 04 middleware de erro genérico;
-// app.use((error, _req, res, _next) => {
+// app.use((error, req, res, _next) => {
 // console.log('miderror', error);
 //   if (error.status) {
 //     return res.status(error.status).json({ message: error.message });
 //   }
-//   res.status(500).json({ message: 'internal server error' });
 // });
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
