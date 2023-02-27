@@ -18,9 +18,17 @@ const getAll = async () => {
 // requisito 08 listar as vendas pelo id
 const getById = async (id) => {
   const salesId = await salesModels.getById(id);
-  return salesId;
+  if (salesId.length === 0) {
+    return {
+      type: 'SALE_NOT_FOUND',
+      message: 'Sale not found',
+    };
+  }
+  return {
+    type: null,
+    message: salesId,
+  };
 };
-
 // const createSalles = async (sales) => {
 //   const arraySchemaSales = joi.array().items(schemaSales);
 //   const { error } = await arraySchemaSales.validate(sales);
@@ -43,5 +51,4 @@ const getById = async (id) => {
   module.exports = {
     getAll,
     getById,
-  // createSalles,
-};
+  };
