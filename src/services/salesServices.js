@@ -1,41 +1,47 @@
-const joi = require('joi');
-const { salesModels, salesProductsModels } = require('../models');
+// const joi = require('joi');
+const { salesModels /* salesProductsModels */ } = require('../models');
+// const { productsModels } = require('../models');
 
-const schemaSales = joi.object({
+// const schemaSales = joi.object({
+//   productId: joi.number().integer().required().label('productId'),
+//   quantity: joi.number().min(1).integer()
+//     .required()
+//     .label('quantity'),
+// });
 
-  productId: joi.number().integer().required().label('productId'),
-  quantity: joi.number().min(1).max(10).integer()
-    .required()
-.label('quantity'),
-// }).message({
-//   'any.required': '{{#label}} is required',
-//   'quantity.min': '{{#label}} is required',
-});
-// console.log('shemaS', schemaSales);
-
-const createSalles = async (sales) => {
-  // console.log('salesServ', sales);
-  const salesProducts = await salesModels.createSalles();
-  console.log('salesProdServ', salesProducts);
-  const saleProd = sales.map((sale) => ({ ...sale, saleId: salesProducts }));
-  await Promise.all(saleProd.map(async (element) => {
-    salesProductsModels.create(element);
-  }));
-  const arraySchemaSales = joi.array().items(schemaSales);
-  const { error } = await arraySchemaSales.validate(sales);
-  console.log('errorServ', error);
-  if (error) {
-    return {
-      type: error.details[0].type,
-      message: error.message,
-    };
-  }
-
-  const saleObject = { id: salesProducts, itemsSold: sales };
-  console.log('saleObject', saleObject);
-  return saleObject;
+// requisito 08 listar todas as vendas
+const getAll = async () => {
+  const salesAll = await salesModels.getAll();
+  return salesAll;
 };
 
-module.exports = {
-  createSalles,
+// requisito 08 listar as vendas pelo id
+const getById = async (id) => {
+  const salesId = await salesModels.getById(id);
+  return salesId;
+};
+
+// const createSalles = async (sales) => {
+//   const arraySchemaSales = joi.array().items(schemaSales);
+//   const { error } = await arraySchemaSales.validate(sales);
+//    if (error) {
+//     return {
+//       type: error.details[0].type,
+//       message: error.message,
+//     };
+//    }
+//   const newSales = await salesModels.createSalles();
+//   const saleProd = sales.map((sale) => ({ ...sale, saleId: newSales }));
+//   await Promise.all(saleProd.map(async (element) => {
+//     salesProductsModels.create(element);
+//   }));
+//   const saleObject = { id: newSales, itemsSold: sales };
+//   // console.log('saleObject', saleObject);
+//   return saleObject;
+// };
+
+  module.exports = {
+    getAll,
+    getById,
+  // createSalles,
 };

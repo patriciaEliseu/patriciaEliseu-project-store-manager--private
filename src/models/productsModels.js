@@ -3,7 +3,8 @@ const { connection } = require('./connection');
 // requisito 01
 const getAll = async () => {
   const query = 'SELECT * FROM StoreManager.products';
-  const [products] = await connection.execute(query);
+  const products = await connection.execute(query);
+  console.log('prodModels', products);
   return products;
 };
 

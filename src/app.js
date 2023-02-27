@@ -1,5 +1,7 @@
 const express = require('express');
-const { productsControllers, salesControllers } = require('./controllers');
+const { productsControllers, /* , salesControllers  */
+salesControllers } = require('./controllers');
+// const validateProductId = require('./middlewares/validateProductId');
 
 const app = express();
 
@@ -13,14 +15,20 @@ app.get('/', (_request, response) => {
 // requisito 01 endpoint /products;
 app.get('/products', productsControllers.getAll);
 
+// requisito 08 endpoint /sales, para listar todas as vendas.
+app.get('/sales', salesControllers.getAll);
+
 // requisito 01 endpoint /products/:id;
 app.get('/products/:id', productsControllers.getById);
+
+// requisito 08 endpoint /sales/:id;
+app.get('/sales/:id', salesControllers.getById);
 
 // requisito 03 endpoint cadastrar /products;
 app.post('/products', productsControllers.create);
 
 // requisito 06 endpoint cadastrar /sales;
-app.post('/sales', salesControllers.createSalles);
+// app.post('/sales', validateProductId, salesControllers.createSalles);
 
 // requisito 04 middleware de erro genérico;
 // app.use((error, req, res, _next) => {

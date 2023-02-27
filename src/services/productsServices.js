@@ -8,6 +8,7 @@ const schemaProduct = Joi.object({
 // requisito 01 listar todos os produtos;
 const getAll = async () => {
   const products = await productsModels.getAll();
+  console.log('prodServices', products);
   return products;
 };
 

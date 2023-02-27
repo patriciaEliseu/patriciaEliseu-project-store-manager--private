@@ -1,8 +1,9 @@
 const { productsServices } = require('../services');
 
 // requisito 01 listar todos os produtos;
-const getAll = async (req, res) => {
-  const products = await productsServices.getAll();
+const getAll = async (_req, res) => {
+  const [products] = await productsServices.getAll();
+  console.log('prodControllers', products);
   res.status(200).json(products);
 };
 
