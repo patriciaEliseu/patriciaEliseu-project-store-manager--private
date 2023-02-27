@@ -18,7 +18,7 @@ describe('Products Models', function () {
 
       sinon.stub(connection, 'execute').resolves([productsMock])
 
-      const result = await productsModels.getAll();
+      const [result] = await productsModels.getAll();
 
       expect(result).to.be.deep.equal(productsMock);
     });
