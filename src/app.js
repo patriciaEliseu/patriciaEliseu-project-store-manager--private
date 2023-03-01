@@ -32,7 +32,10 @@ app.post('/products', productsControllers.create);
 
 // requisito 10 endpoint atualizar produto
 app.put('/products/:id', validateProductId,
-   validateNameProduct, productsControllers.updateProduct);
+  validateNameProduct, productsControllers.updateProduct);
+
+// requisito 12 endpoint para deletar produto
+app.delete('/products/:id', productsControllers.deleteProduct);
 
 // requisito 04 middleware de erro genérico;
 // app.use((error, req, res, _next) => {

@@ -54,9 +54,23 @@ const updateProduct = async ({ productId, name }) => {
   return { status: 200, message: { ...productAdd } };
 };
 
+// requisito 12 deletar produto
+const deleteProduct = async (productId) => {
+  const del = await productsModels.getById(productId);
+  if (!del) {
+    return {
+      type: 'NOT_FOUND',
+      message: 'Product not found',
+    };
+  }
+  await productsModels.deleteProduct(productId);
+  return { type: null, message: null };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   updateProduct,
+  deleteProduct,
 };

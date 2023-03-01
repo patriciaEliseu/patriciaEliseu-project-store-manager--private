@@ -30,9 +30,16 @@ const updateProduct = async ({ productId, name }) => {
   return { id: productId, ...name };
 };
 
+// requisito 12 deletar produto
+const deleteProduct = async (productId) => {
+  await connection
+    .execute('DELETE FROM StoreManager.products WHERE id = ?', [productId]);
+};
+
 module.exports = {
     getAll,
     getById,
     create,
-    updateProduct,
+  updateProduct,
+    deleteProduct,
 };

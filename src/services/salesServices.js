@@ -1,5 +1,5 @@
 // const joi = require('joi');
-const { salesModels /* salesProductsModels */ } = require('../models');
+const { salesModels/* , salesProductsModels */ } = require('../models');
 // const { productsModels } = require('../models');
 
 // const schemaSales = joi.object({
@@ -41,7 +41,7 @@ const getById = async (id) => {
 //       message: error.message,
 //     };
 //    }
-  // newSales resposta o id do sales
+//   // newSales resposta o id do sales
 //   const newSales = await salesModels.createSalles(sales);
 //   console.log('newSales', newSales);
 //   // saleProd pega o array de objetos faz um find para percorrer cada um
