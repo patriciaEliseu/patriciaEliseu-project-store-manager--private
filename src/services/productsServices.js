@@ -34,10 +34,29 @@ const create = async (name) => {
   const createProduct = await productsModels.create(name);
   // console.log('createService', createProduct);
   return createProduct;
- };
+};
+
+// requisito 10 atualizar produto
+const updateProduct = async ({ productId, name }) => {
+  // const { error } = await schemaProduct.validate({ name });
+  // // console.log('errorService', error);
+  // if (error) {
+  //   return {
+  //     type: error.details[0].type,
+  //     message: error.message,
+  //   };
+  // }
+  await productsModels.updateProduct({ productId, name });
+  const productAdd = await productsModels.getById(productId);
+  if (!productAdd) {
+    return { status: 404, message: 'Product not found' };
+  }
+  return { status: 200, message: { ...productAdd } };
+};
 
 module.exports = {
   getAll,
   getById,
   create,
+  updateProduct,
 };

@@ -29,26 +29,36 @@ const getById = async (id) => {
     message: salesId,
   };
 };
+
+// requisito 06 criar venda se passar pelo joi.
 // const createSalles = async (sales) => {
 //   const arraySchemaSales = joi.array().items(schemaSales);
 //   const { error } = await arraySchemaSales.validate(sales);
+//   console.log('error', error, sales);
 //    if (error) {
 //     return {
 //       type: error.details[0].type,
 //       message: error.message,
 //     };
 //    }
-//   const newSales = await salesModels.createSalles();
+  // newSales resposta o id do sales
+//   const newSales = await salesModels.createSalles(sales);
+//   console.log('newSales', newSales);
+//   // saleProd pega o array de objetos faz um find para percorrer cada um
+//   //  e acrescentar o id de venda
 //   const saleProd = sales.map((sale) => ({ ...sale, saleId: newSales }));
+//   // fez um promise.all para pegar essa venda com id e inserir na salesProdMod
 //   await Promise.all(saleProd.map(async (element) => {
-//     salesProductsModels.create(element);
+//     console.log('sss', salesProductsModels.create(element));
 //   }));
+
 //   const saleObject = { id: newSales, itemsSold: sales };
-//   // console.log('saleObject', saleObject);
+//   console.log('saleObject', saleObject);
 //   return saleObject;
 // };
 
   module.exports = {
     getAll,
     getById,
+    // createSalles,
   };

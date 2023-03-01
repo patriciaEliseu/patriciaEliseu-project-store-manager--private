@@ -19,15 +19,17 @@ const getById = async (id) => {
   return result;
 };
 
-// // const createSalles = async () => {
-// //   const query = 'INSERT INTO StoreManager.sales (date) VALUES(?)';
-// //   const createDate = new Date();
-// //   const [{ insertId }] = await connection.execute(query, [createDate]);
-// //   return insertId;
-// // };
+// const createSalles = async () => {
+//   // NOW() poderia usar essa função para criar uma data dentro do values
+//   const query = 'INSERT INTO StoreManager.sales (date) VALUES(?)';
+//   const createDate = new Date();
+//   const [{ insertId }] = await connection.execute(query, [createDate]);
+//   console.log('insertId', insertId);
+//   return insertId;
+// };
 
 module.exports = {
   getAll,
   getById,
-//   // createSalles,
+  // createSalles,
 };

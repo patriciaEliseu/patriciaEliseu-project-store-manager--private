@@ -23,8 +23,16 @@ const create = async (name) => {
   return object;
 };
 
+// requisito 10 atualizar produto
+const updateProduct = async ({ productId, name }) => {
+  const query = 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
+  await connection.execute(query, [name, productId]);
+  return { id: productId, ...name };
+};
+
 module.exports = {
     getAll,
     getById,
     create,
+    updateProduct,
 };

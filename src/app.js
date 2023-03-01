@@ -1,7 +1,7 @@
 const express = require('express');
-const { productsControllers, /* , salesControllers  */
-salesControllers } = require('./controllers');
-// const validateProductId = require('./middlewares/validateProductId');
+const { productsControllers, salesControllers } = require('./controllers');
+const validateNameProduct = require('./middlewares/validateNameProduct');
+const validateProductId = require('./middlewares/validateProductId');
 
 const app = express();
 
@@ -29,6 +29,10 @@ app.post('/products', productsControllers.create);
 
 // requisito 06 endpoint cadastrar /sales;
 // app.post('/sales', validateProductId, salesControllers.createSalles);
+
+// requisito 10 endpoint atualizar produto
+app.put('/products/:id', validateProductId,
+   validateNameProduct, productsControllers.updateProduct);
 
 // requisito 04 middleware de erro genérico;
 // app.use((error, req, res, _next) => {
