@@ -2,6 +2,7 @@ const express = require('express');
 const { productsControllers, salesControllers } = require('./controllers');
 const validateNameProduct = require('./middlewares/validateNameProduct');
 const validateProductId = require('./middlewares/validateProductId');
+const router = require('./router');
 
 const app = express();
 
@@ -12,8 +13,7 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-// requisito 01 endpoint /products;
-app.get('/products', productsControllers.getAll);
+app.use(router);
 
 // requisito 08 endpoint /sales, para listar todas as vendas.
 app.get('/sales', salesControllers.getAll);
